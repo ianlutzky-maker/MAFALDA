@@ -25,3 +25,13 @@ Abrí el archivo [index.html](./index.html) en tu navegador, o activá GitHub Pa
 ## Sobre el proyecto
 
 Aventura humorística no oficial realizada como homenaje, con diálogos e historia originales. *Mafalda* y sus personajes pertenecen a sus respectivos titulares de derechos.
+
+## Edición 16-bit: rediseño gráfico
+
+- Sprites de los personajes hechos en pixel art, con peinados, atuendos y siluetas diferenciadas.
+- Mafalda luce pelo negro voluminoso, moño rojo y vestido rojo con lunares blancos.
+- Escenarios más texturizados, retratos de los personajes y una estética visual de JRPG de 16 bits.
+- Los enemigos de batalla ahora tienen ilustraciones originales en pixel art, en lugar de emojis.
+- Mejoras en la interfaz de batalla y la pantalla inicial para dispositivos móviles.
+
+La versión de `index.html` es autocontenida: podés descargarla y abrirla sin conexión.
