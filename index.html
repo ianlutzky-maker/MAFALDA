@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#182640"><title>Mafalda: ¿Todo bien? — Mini RPG</title>
+<style>:root{--ink:#17243b;--cream:#fff6d6;--purple:#6851bb;--pink:#f29ca8;--yellow:#ffd46a;--shadow:#162137;--paper:#fffae7;--leaf:#a1d6b1}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#141b31;color:var(--cream);font-family:'Trebuchet MS',Verdana,sans-serif}body{background:radial-gradient(ellipse at top,#3b3565 0%,#182640 57%,#0f1528 100%);display:flex;justify-content:center;align-items:flex-start}.shell{width:min(1040px,100%);margin:12px auto 25px;padding:0 12px}.brand{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 2px 10px}.brand strong{font-size:16px;letter-spacing:2px}.tag{display:inline-block;margin-left:8px;padding:3px 7px;border:2px solid #9786b2;border-radius:5px;font-size:10px;color:#d8c9f1;vertical-align:2px;letter-spacing:1px}.brand .buttons{display:flex;gap:7px}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #ffe27d;outline-offset:3px}.smallbtn{background:#292e4e;color:#fff5c6;border:2px solid #7c81b2;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:bold}.smallbtn:hover{background:#44486e}.frame{position:relative;border:5px solid #f4cd7d;border-radius:12px;box-shadow:0 0 0 5px #302d58,0 13px 0 #0b1526,0 19px 38px #090e1c;overflow:hidden;background:#131d32;max-width:100%;aspect-ratio:832/512}.frame canvas{display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none}.innerHud{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;pointer-events:none;gap:7px}.hud-chip{padding:5px 9px;border:2px solid #1d2e3a;background:#fff6d8ed;color:#20324c;font-size:12px;font-weight:bold;box-shadow:3px 3px 0 #1a2741}.objective{background:#f2ebfd;color:#1c2644;border:3px solid #171e42;border-radius:9px;box-shadow:4px 4px 0 #17213a;padding:10px 14px;display:flex;justify-content:space-between;gap:12px;align-items:center;margin:15px 0 10px}.objective span{font-size:12px;font-weight:bold;color:#6f599d;text-transform:uppercase;letter-spacing:1px}.objective p{font-weight:bold;margin:3px 0 0;font-size:14px}.progress{display:flex;gap:5px;flex:none}.pip{width:16px;height:16px;background:#bcb5d2;border:2px solid #37345b;transform:rotate(45deg)}.pip.on{background:#ffd75f}.dialogue{position:absolute;bottom:14px;left:14px;right:14px;border:4px solid #27314d;border-radius:11px;background:#fff8dc;color:#25314c;box-shadow:0 5px 0 #141f35;min-height:132px;padding:14px 17px 12px;cursor:pointer;z-index:8}.dialogue.hidden,.overlay.hidden,.battle.hidden,.toast.hidden{display:none}.dialogue-head{display:flex;justify-content:space-between;font-weight:900;font-size:16px;color:#6247a8;margin-bottom:6px}.dialogue-body{font-size:17px;line-height:1.4;min-height:52px;max-width:760px;font-weight:600}.dialogue-next{font-size:12px;align-self:flex-end;color:#7167a0;animation:pulse 1s infinite}.overlay{position:absolute;inset:0;z-index:11;background:#141c32ea;display:flex;justify-content:center;align-items:center;padding:20px}.sheet{background:#fff7db;border:5px solid #ffe29a;border-radius:13px;box-shadow:0 0 0 5px #292548,8px 9px 0 #0b1428;color:#20324d;width:min(670px,100%);max-height:94%;overflow:auto;padding:21px}.sheet h2{margin:0 0 7px;color:#4e4383;font-size:27px}.sheet h3{margin:13px 0 5px;font-size:16px}.sheet p{line-height:1.55}.sheet .kicker{font-size:11px;letter-spacing:2px;color:#75699a;text-transform:uppercase;font-weight:900}.mainTitle{font-size:clamp(30px,5vw,55px);line-height:1.02;letter-spacing:-2px;margin:7px 0;color:#243b5e;text-shadow:3px 3px #f4c56e}.startGraphic{display:flex;gap:8px;align-items:center;margin:18px 0}.avatar{width:39px;height:44px;border-radius:11px 11px 7px 7px;border:3px solid #1c2a47;background:#f7d486;display:flex;align-items:center;justify-content:center;font-size:25px;box-shadow:3px 3px 0 #7d75a0}.btn{background:#6053ba;border:3px solid #242947;box-shadow:3px 3px 0 #1d2848;color:white;padding:11px 16px;border-radius:8px;font-size:14px;font-weight:900}.btn:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px)}.btn.secondary{background:#fff4cc;color:#35375d}.btn.danger{background:#ce626c}.btn:disabled{opacity:.45;cursor:not-allowed}.buttonrow{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}.note{font-size:12px;color:#746d89}.battle{position:absolute;inset:0;z-index:9;display:flex;flex-direction:column;background:repeating-linear-gradient(140deg,#32386b 0 18px,#4e426f 18px 36px,#70506e 36px 54px);color:#fff7ce}.battle-top{padding:15px 20px 4px;display:flex;align-items:center;justify-content:space-between;text-shadow:2px 2px #272846;gap:12px}.battle-top h2{margin:0;font-size:24px}.battle-top p{font-size:12px;margin:5px 0}.enemyArena{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden}.enemyArena:before{content:'';position:absolute;inset:7%;border-radius:50%;border:10px dotted #c2b3fa50;animation:spin 18s linear infinite}.enemyFace{position:relative;font-size:clamp(65px,15vw,132px);z-index:2;filter:drop-shadow(8px 13px #211d49b7);animation:bob 1.5s ease-in-out infinite;line-height:1}.enemyLabel{z-index:2;position:relative;font-size:13px;background:#192344de;border:2px solid #fff1bd;padding:4px 11px;border-radius:13px;margin-top:7px}.battle-bottom{background:#fff8df;color:#293650;border-top:5px solid #212c4d;padding:11px 15px 15px;min-height:199px}.partybar{display:flex;gap:7px;overflow:auto;margin-bottom:10px}.partyunit{min-width:0;flex:1;position:relative;background:#ede8fd;border:2px solid #5c5b9a;border-radius:6px;padding:5px 7px;font-size:12px}.partyunit.current{background:#ffe4a4;border-color:#ac6b36;box-shadow:0 0 0 2px #ffdd7d}.partyunit.dead{opacity:.4}.partyunit b{display:block;font-size:13px}.hpbar{height:6px;background:#b9b3ca;border-radius:3px;margin-top:3px;overflow:hidden}.hpbar i{display:block;height:100%;background:#dd6979}.battle-controls{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}.actionBtn{background:#403e86;border:2px solid #1e2952;border-radius:7px;color:white;padding:9px 4px;font-weight:bold;font-size:12px}.actionBtn:nth-child(2){background:#9864a6}.actionBtn:nth-child(3){background:#3c856d}.actionBtn:nth-child(4){background:#a27c39}.actionBtn:disabled{opacity:.45;cursor:not-allowed}.battleMsg{font-size:13px;font-weight:bold;margin:0 0 7px;min-height:18px}.toast{position:absolute;top:60px;left:50%;transform:translateX(-50%);z-index:13;pointer-events:none;color:#15263f;background:#ffe88e;border:3px solid #26365b;box-shadow:5px 5px 0 #172742;border-radius:8px;font-size:14px;font-weight:800;padding:9px 14px;text-align:center;max-width:86%}.partyList{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}.partyEntry{border:2px solid #b1a7cf;padding:11px;background:#f9f2e4;border-radius:8px;text-align:left;color:#273553}.partyEntry b{display:block}.partyEntry small{display:block;margin-top:3px}.partyEntry.selected{background:#d9f3df;border-color:#42886e}.partyEntry:disabled{opacity:.55}.footnote{display:flex;gap:12px;justify-content:space-between;font-size:12px;color:#c9c8df;margin:9px 3px}.mobileControls{display:none;user-select:none;-webkit-user-select:none;justify-content:space-between;gap:12px;align-items:center;margin:16px auto 4px;width:min(100%,680px)}.dpad{display:grid;grid-template-columns:repeat(3,57px);grid-template-rows:repeat(3,48px);gap:4px}.padbtn{border:3px solid #7b7ba6;background:#373b62;border-radius:10px;color:#fff8da;font-weight:900;font-size:21px;touch-action:none}.padbtn:active,.padbtn.held{background:#7770bd}.padbtn.up{grid-area:1/2}.padbtn.left{grid-area:2/1}.padbtn.down{grid-area:2/2}.padbtn.right{grid-area:2/3}.padbtn.action{grid-area:2/3}.mobileRight{display:flex;flex-direction:column;gap:8px}.mobileRight .padbtn{min-width:100px;padding:14px 8px;font-size:13px}.help{font-size:11px;opacity:.65}@keyframes pulse{50%{opacity:.4}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes bob{50%{transform:translateY(-10px)}}@media(max-width:740px){.shell{padding:0 7px;margin:5px auto}.brand strong{font-size:12px;letter-spacing:.6px}.tag{display:none}.smallbtn{padding:5px 7px;font-size:11px}.frame{border-width:3px;border-radius:7px}.dialogue{left:7px;right:7px;bottom:7px;min-height:110px;padding:9px 11px}.dialogue-head{font-size:14px}.dialogue-body{font-size:13px;min-height:42px;line-height:1.3}.objective{margin:10px 0}.objective p{font-size:12px}.objective span{font-size:10px}.hud-chip{font-size:9px;padding:3px 5px}.mobileControls{display:flex}.footnote .desktopHint{display:none}.battle-top{padding:8px 9px}.battle-top h2{font-size:17px}.battle-bottom{padding:6px;min-height:160px}.partyunit{font-size:9px;padding:3px}.partyunit b{font-size:10px}.battle-controls{gap:4px}.actionBtn{font-size:10px;padding:8px 2px}.battleMsg{font-size:11px}.sheet{padding:12px}.sheet h2{font-size:23px}.partyList{gap:6px}}@media (pointer:coarse){.mobileControls{display:flex}}@media(max-width:420px){.dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,43px)}.dialogue-body{font-size:12px}}
+@media(max-width:740px){.frame{height:310px;aspect-ratio:auto}.frame canvas{height:100%}.sheet{padding:12px;max-height:96%}.sheet .mainTitle{font-size:29px;letter-spacing:-1px}.startGraphic{margin:10px 0}.startGraphic .avatar{width:31px;height:33px;font-size:19px;border-width:2px}.sheet p{font-size:12px;line-height:1.35}.sheet .note{font-size:10px}.sheet .buttonrow{margin-top:9px}.sheet .btn{padding:8px 10px;font-size:12px}.mobileControls{margin-top:8px}}
+@media(max-width:390px){.frame{height:290px}.sheet .mainTitle{font-size:27px}.sheet .kicker{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="brand"><div><strong>★ MAFALDA: ¿TODO BIEN?</strong><span class="tag">RPG · EDICIÓN FAN</span></div><div class="buttons"><button class="smallbtn" id="teamBtn">Equipo</button><button class="smallbtn" id="journalBtn">Diario</button><button class="smallbtn" id="soundBtn">♫ ON</button></div></header>
+  <main class="frame" id="frame" aria-label="Juego RPG de Mafalda">
+    <canvas id="game" width="832" height="512" aria-label="Mapa del barrio"></canvas>
+    <div class="innerHud" id="innerHud"><div class="hud-chip" id="areaLabel">CASA DE MAFALDA</div><div class="hud-chip" id="starsLabel">★ 0 / 3</div></div>
+    <div id="dialogue" class="dialogue hidden" role="button" tabindex="0" aria-label="Avanzar diálogo"><div class="dialogue-head"><span id="speaker">Mafalda</span><span class="dialogue-next">▼ SEGUIR</span></div><div class="dialogue-body" id="dialogueBody"></div></div>
+    <div class="battle hidden" id="battle"><div class="battle-top"><div><h2 id="enemyName">ENEMIGO</h2><p id="enemyDesc">Una idea muy mal educada.</p></div><div class="hud-chip" id="enemyHealth">HP 30/30</div></div><div class="enemyArena"><div id="enemyFace" class="enemyFace">📺</div><div class="enemyLabel" id="enemyFlavor">¡El enemigo se cree importante!</div></div><div class="battle-bottom"><div class="partybar" id="partyBar"></div><p class="battleMsg" id="battleMsg">¿Qué hará Mafalda?</p><div class="battle-controls"><button class="actionBtn" data-act="attack">1 · DISCUTIR</button><button class="actionBtn" data-act="skill">2 · HABILIDAD</button><button class="actionBtn" data-act="talk">3 · CONVENCER</button><button class="actionBtn" data-act="item">4 · GALLETITA</button></div></div></div>
+    <div id="toast" class="toast hidden"></div>
+    <div class="overlay" id="overlay"><div class="sheet" id="overlayContent"></div></div>
+  </main>
+  <section class="objective"><div><span>Tu misión</span><p id="questText">Escuchá la radio en casa.</p></div><div class="progress"><i class="pip" id="pip1"></i><i class="pip" id="pip2"></i><i class="pip" id="pip3"></i></div></section>
+  <section class="mobileControls" aria-label="Controles táctiles"><div class="dpad"><button class="padbtn up" data-dir="up">▲</button><button class="padbtn left" data-dir="left">◀</button><button class="padbtn down" data-dir="down">▼</button><button class="padbtn right" data-dir="right">▶</button></div><div class="mobileRight"><button class="padbtn" id="mobileAction">HABLAR · A</button><button class="padbtn" id="mobileTeam">EQUIPO</button></div></section>
+  <footer class="footnote"><span class="desktopHint">Mover: WASD / flechas · Hablar: E, Z o Enter · Equipo: P · Diario: I</span><span>Historia y arte originales · Homenaje fan no oficial · Guardado automático</span></footer>
+</div>
+<script>(()=>{
+'use strict';
+const $=id=>document.getElementById(id); const canvas=$('game'),ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+const TILE=32,W=26,H=16, SAVE='mafalda_todo_bien_v1';
+const zoneNames={home:'Casa de Mafalda',street:'La cuadra',plaza:'La plaza',market:'Almacén Don Manolo',school:'La escuela',office:'Oficina del Todo Bien'};
+const people={
+ mafalda:{name:'Mafalda',hp:54,pp:25,atk:10,skill:'Pregunta incómoda',short:'PREGUNTAR',cost:3,color:'#d74b56',hair:'#171b29',look:'bob',dress:'#d84a50'},
+ felipe:{name:'Felipe',hp:45,pp:30,atk:8,skill:'Fantasía heroica',short:'IMAGINAR',cost:5,color:'#ffd15c',hair:'#d4a32e',look:'spike',dress:'#5799c6'},
+ susanita:{name:'Susanita',hp:49,pp:25,atk:9,skill:'Rumor demoledor',short:'CHISME',cost:4,color:'#ffb3ca',hair:'#eac05a',look:'curl',dress:'#ec83ad'},
+ manolito:{name:'Manolito',hp:62,pp:22,atk:12,skill:'Oferta irresistible',short:'OFERTAR',cost:4,color:'#87aa74',hair:'#262936',look:'brush',dress:'#81aa66'},
+ miguelito:{name:'Miguelito',hp:50,pp:28,atk:9,skill:'Duda metafísica',short:'DUDAR',cost:5,color:'#d4bd77',hair:'#b59a52',look:'curls',dress:'#eca869'},
+ libertad:{name:'Libertad',hp:47,pp:31,atk:10,skill:'Argumento irrefutable',short:'ARGUMENTAR',cost:5,color:'#bb9cdc',hair:'#171721',look:'short',dress:'#a08bd2'},
+ guille:{name:'Guille',hp:1,pp:0,atk:0,color:'#91c7e6',hair:'#e1bd7e',look:'baby',dress:'#8bc3de'},
+ raquel:{name:'Raquel',color:'#719ec4',hair:'#5b453b',look:'long',dress:'#6585ad'},
+ papa:{name:'Papá',color:'#8b9b98',hair:'#5d534b',look:'short',dress:'#a8b0bd'},
+ burocracia:{name:'Burocracia',color:'#7abb84',look:'turtle'},
+ donmanolo:{name:'Don Manolo',color:'#b5ab92',hair:'#424145',look:'short',dress:'#9092b2'},
+ madreManolito:{name:'Mamá de Manolito',color:'#cd9b83',hair:'#46404a',look:'long',dress:'#b3846f'},
+ muriel:{name:'Muriel',color:'#98a9d6',hair:'#a16f48',look:'long',dress:'#a3a9e7'},
+ maestra:{name:'Maestra',color:'#b5aaa3',hair:'#795d55',look:'long',dress:'#a98a8d'},
+ madreLibertad:{name:'Mamá de Libertad',color:'#cd9aa3',hair:'#614c40',look:'long',dress:'#df96ae'},
+ tiaPaca:{name:'Tía Paca',color:'#d5b4ca',hair:'#ccc4cb',look:'curl',dress:'#b9a3c9'},
+ madreSusanita:{name:'Mamá de Susanita',color:'#c6adb5',hair:'#bcac68',look:'curl',dress:'#b183ae'},
+ madreFelipe:{name:'Mamá de Felipe',color:'#c3a7ae',hair:'#765f4c',look:'long',dress:'#ad9bc8'},
+ madreMiguelito:{name:'Mamá de Miguelito',color:'#a9ccbc',hair:'#524242',look:'curl',dress:'#86a38c'},
+ padreSusanita:{name:'Papá de Susanita',color:'#cbb2a5',hair:'#554944',look:'short',dress:'#9a95ac'},
+};
+const N=(id,x,y)=>({id,x,y});
+const NPCS={
+ home:[N('raquel',9,6),N('papa',19,9),N('guille',5,10),N('burocracia',5,12)],
+ street:[N('madreSusanita',6,9),N('madreFelipe',12,10),N('madreMiguelito',20,9),N('padreSusanita',15,6)],
+ plaza:[N('felipe',6,8),N('susanita',8,11),N('libertad',18,9),N('muriel',21,6),N('madreLibertad',17,5),N('tiaPaca',5,5)],
+ market:[N('manolito',8,8),N('donmanolo',18,6),N('madreManolito',21,9)],
+ school:[N('miguelito',5,9),N('maestra',19,5)],office:[]
+};
+const PROP={
+ home:[{id:'radio',x:17,y:5,name:'Radio'},{id:'soup',x:12,y:7,name:'La sopa'},{id:'plant',x:22,y:5,name:'La planta'}],
+ street:[{id:'homegate',x:7,y:13,name:'Casa'},{id:'marketgate',x:18,y:5,name:'Almacén'},{id:'schoolgate',x:23,y:5,name:'Escuela'},{id:'plazagate',x:24,y:8,name:'Plaza'}],
+ plaza:[{id:'antenna',x:13,y:6,name:'Antena'},{id:'bench',x:11,y:10,name:'Banco de plaza'}],
+ market:[{id:'register',x:13,y:5,name:'Caja registradora'},{id:'price',x:5,y:4,name:'Pizarra de precios'},{id:'toy',x:6,y:11,name:'Juguete'}],
+ school:[{id:'blackboard',x:13,y:4,name:'Pizarrón'},{id:'homework',x:8,y:7,name:'Carpeta'}],
+ office:[{id:'boss',x:13,y:5,name:'El Señor Todo Bien'},{id:'paper',x:20,y:9,name:'Formulario'}]
+};
+const ENEMIES={
+ radio:{name:'NOTICIA SIN CONTEXTO',face:'📺',hp:112,atk:10,def:3,boss:true,desc:'Una pantalla que habla más rápido de lo que piensa.',flavor:'¡TODO ESTÁ PERFECTO! ¡NO PREGUNTEN!',talk:'Las noticias empiezan a dudar de su propio titular.'},
+ store:{name:'PRECIO POR LAS NUBES',face:'💸',hp:145,atk:12,def:4,boss:true,desc:'Un precio con tanta autoestima que no entra en la góndola.',flavor:'¡SUBO PORQUE SÍ! ¡OFERTA DE ESCÁNDALO!',talk:'El precio descubre que también tiene límites.'},
+ exam:{name:'EXAMEN INFINITO',face:'📚',hp:170,atk:13,def:5,boss:true,desc:'Un examen que sólo sabe evaluar respuestas obedientes.',flavor:'PREGUNTA 1 DE 999: ¿POR QUÉ NO SE CALLAN?',talk:'El examen aprende una pregunta de verdad.'},
+ boss:{name:'SEÑOR TODO BIEN',face:'🎩',hp:220,atk:16,def:6,boss:true,desc:'Director de Respuestas Tranquilizadoras, S.A.',flavor:'SI NO HAY PREGUNTAS, NO HAY PROBLEMAS.',talk:'Por primera vez, el señor no tiene respuesta automática.'},
+ echo:{name:'ECO DE LOS TITULARES',face:'📢',hp:60,atk:8,def:2,desc:'Repite una cosa hasta que parece cierta.',flavor:'¡ME LO DIJO ALGUIEN QUE LO VIO!',talk:'El eco se detiene a escuchar.'},
+ queue:{name:'FILA INTERMINABLE',face:'📑',hp:68,atk:9,def:3,desc:'Una fila que empieza donde termina la paciencia.',flavor:'SÓLO FALTA UNA FOTOCOPIA.',talk:'La fila deja pasar a todo el mundo.'},
+ homework:{name:'TAREA PARA AYER',face:'⏰',hp:70,atk:10,def:2,desc:'Quería estar terminada antes de existir.',flavor:'¡PARA MAÑANA! ¡DIGO, PARA AYER!',talk:'La tarea acepta volver a mañana.'}
+};
+const D=(name,text)=>({name,text});
+const lines=(...arr)=>arr.map(a=>Array.isArray(a)?D(a[0],a[1]):D('Narrador',a));
+function newState(){const stats={};for(const k of ['mafalda','felipe','susanita','manolito','miguelito','libertad'])stats[k]={hp:people[k].hp,pp:people[k].pp};return {zone:'home',x:13,y:11,face:'up',stage:0,shards:0,flags:{},recruited:['mafalda'],selected:['mafalda'],stats,cookies:7,steps:0,encounters:{street:0,plaza:0,market:0,school:0},victories:0,seconds:0};}
+let S=newState();let mode='title',dialogues=[],dialogueDone=null,combat=null,toastTimer=0,moveCooldown=0,frameClock=0,lastTs=0,held=new Set(),sound=true,audio=null,saveTick=0,musicClock=0,musicStep=0,musicArea='';
+function load(){try{const d=JSON.parse(localStorage.getItem(SAVE));if(d&&d.stage>=0&&d.zone&&d.stats){S={...newState(),...d,flags:{...d.flags},stats:{...newState().stats,...d.stats},encounters:{...newState().encounters,...d.encounters}};S.selected=S.selected.filter(x=>S.recruited.includes(x)).slice(0,3);if(!S.selected.includes('mafalda'))S.selected.unshift('mafalda');S.x=Number.isFinite(S.x)?S.x:13;return true;}}catch(e){}return false;}
+function saved(){try{return !!localStorage.getItem(SAVE)}catch(e){return false}}
+function save(){try{localStorage.setItem(SAVE,JSON.stringify(S))}catch(e){}}
+function bleep(f=490,d=.06,type='square',vol=.045){if(!sound)return;try{if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(vol,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+d);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+d)}catch(e){}}
+function chirp(){bleep(630,.055);setTimeout(()=>bleep(820,.07),75)}
+// Pequeñas melodías chiptune originales, sin archivos ni pistas externas.
+const melodies={home:[392,0,440,494,523,0,494,392,349,0,392,440,294,0,0,0],street:[262,330,392,0,392,440,392,330,294,349,392,0,330,294,262,0],plaza:[392,440,523,0,587,523,440,392,349,392,440,0,392,0,0,0],market:[330,392,440,392,330,0,294,262,330,440,494,0,392,330,294,0],school:[330,0,349,392,0,440,392,349,330,0,294,262,294,330,0,0],office:[220,0,233,0,262,0,196,0,220,0,277,0,247,0,0,0],battle:[196,196,0,262,196,294,0,262,220,220,0,294,262,330,0,262]};
+function updateMusic(dt){if(!sound||['title','ending'].includes(mode))return;const area=mode==='battle'?'battle':S.zone;if(area!==musicArea){musicArea=area;musicStep=0;musicClock=0;}musicClock-=dt;if(musicClock>0)return;const note=melodies[area][musicStep++%16];const pace=area==='battle'?.19:area==='office'?.34:.29;musicClock=pace;if(note){bleep(note,pace*.78,area==='battle'?'square':'triangle',.0075);if(musicStep%4===1)bleep(note/2,pace*.94,'sine',.0045);}}
+function toast(text){$('toast').textContent=text;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),2100)}
+function updateHud(){const objectives=[
+ 'Escuchá las noticias en la radio de casa.',
+ !S.flags.felipe?'Encontrá a Felipe en la plaza.':!S.flags.susanita?'Hablá con Susanita en la plaza.':!S.flags.libertad?'Encontrá a Libertad en la plaza.':'Desafiá a la antena en el centro de la plaza.',
+ !S.flags.manolito?'Hablá con Manolito en el almacén.':!S.flags.donmanolo?'Preguntale a Don Manolo por los precios.':!S.flags.price?'Revisá la pizarra de precios.':'Enfrentá la caja registradora del almacén.',
+ !S.flags.miguelito?'Encontrá a Miguelito en la escuela.':!S.flags.maestra?'Hablá con la maestra.':!S.flags.homework?'Leé la carpeta del aula.':'Enfrentá al pizarrón de la escuela.',
+ 'Volvé a la antena de la plaza. ¡Entrá a la oficina!',
+ '¡Lo lograron! El mundo recuperó las preguntas.'
+ ];$('questText').textContent=objectives[S.stage]||objectives[5];$('areaLabel').textContent=zoneNames[S.zone].toUpperCase();$('starsLabel').textContent=`✦ ${S.shards} / 3`;
+ for(let i=1;i<=3;i++)$('pip'+i).classList.toggle('on',i<=S.shards);
+}
+function showDialog(arr,callback){dialogues=arr.slice();dialogueDone=callback||null;mode='dialogue';$('dialogue').classList.remove('hidden');nextDialog(true)}
+function nextDialog(first=false){if(!first)bleep(700,.04,'sine',.018);if(dialogues.length){const d=dialogues.shift();$('speaker').textContent=d.name;$('dialogueBody').textContent=d.text;return;} $('dialogue').classList.add('hidden');mode='explore';const fn=dialogueDone;dialogueDone=null;if(fn)fn();save();updateHud();}
+function overlay(html,modeName='overlay'){mode=modeName;$('overlayContent').innerHTML=html;$('overlay').classList.remove('hidden')}
+function closeOverlay(){if(mode==='title')return;$('overlay').classList.add('hidden');mode='explore';updateHud();}
+function begin(continuing){if(!continuing)S=newState();else if(!load())S=newState();$('overlay').classList.add('hidden');mode='explore';updateHud();if(!continuing || S.stage===0&&!S.flags.started){S.flags.started=true;showDialog(lines(
+ ['Raquel','Mafalda, ¿podés bajar un ratito el volumen de esa radio?'],
+ ['Mafalda','¿Del aparato o de lo que pasa en el mundo?'],
+ ['Raquel','Del aparato. Lo otro no sé dónde tiene el botón.'],
+ ['Narrador','Una mañana bastante normal... hasta que algo muy raro empezó a sonar en la radio.'],
+ ['Mafalda','Voy a escuchar. Cuando el silencio viene con instrucciones, desconfío.']
+ ));}save();}
+function startScreen(){const has=saved();overlay(`<div class="kicker">Un videojuego de barrio · 1 jugador</div><div class="mainTitle">MAFALDA:<br>¿TODO BIEN?</div><div class="buttonrow"><button class="btn" id="startNew">▶ NUEVA PARTIDA</button>${has?'<button class="btn secondary" id="continue">↻ CONTINUAR</button>':''}</div><div class="startGraphic"><div class="avatar">👧</div><div class="avatar">📺</div><div class="avatar">🌎</div><div class="avatar">💭</div><div class="avatar">🐢</div></div><p><strong>Una aventura de preguntas difíciles, precios imposibles y respuestas demasiado fáciles.</strong> Recorré el barrio, reuní a la pandilla y peleá contra las cosas que quieren que nadie piense.</p><p class="note">RPG inspirado en la sensibilidad de los clásicos de los 90. Aprox. 15–20 minutos según cuánto explores. Diálogos nuevos. No es un juego oficial.</p><p class="note">PC: flechas/WASD para caminar; E/Z/Enter para hablar; 1–4 para combatir. Celular: cruceta y botón HABLAR.</p>`, 'title');$('startNew').onclick=()=>begin(false);if(has)$('continue').onclick=()=>begin(true);}
+function introWin(){S.stage=5;save();showDialog(lines(
+ ['Señor Todo Bien','Espere... ¿cómo que no se puede solucionar el mundo con una sola frase?'],
+ ['Libertad','No. Probaste con una sola idea y ni siquiera era tuya.'],
+ ['Miguelito','Yo tengo una duda: si lo entendimos todo, ¿qué hacemos mañana?'],
+ ['Felipe','¿Mañana? ¡No! Mañana tengo tarea.'],
+ ['Susanita','Qué suerte que salvamos al mundo. ¿Alguien se fijó cómo me queda el pelo?'],
+ ['Manolito','¿Salvar el mundo es gratis? Esto es un modelo de negocios alarmante.'],
+ ['Mafalda','Lo bueno de que el mundo sea complicado es que todavía hay algo por mejorar.'],
+ ['Guille','¿Y la opa?'],
+ ['Raquel','La sopa sigue estando en casa, Guille.'],
+ ['Mafalda','Qué alivio. Por un momento pensé que habíamos resuelto demasiado.'],
+ ['Narrador','FIN. El mundo sigue hecho un lío. Pero por suerte, sigue lleno de preguntas.']
+ ),()=>endingScreen());}
+function endingScreen(){mode='ending';const mins=Math.floor(S.seconds/60),secs=Math.floor(S.seconds%60).toString().padStart(2,'0');overlay(`<div class="kicker">CRÉDITOS FINALES</div><h2>¡Ganaron la discusión!</h2><div class="buttonrow"><button class="btn" id="wander">VOLVER AL BARRIO</button><button class="btn secondary" id="restart">JUGAR DE NUEVO</button></div><p style="font-size:52px;margin:10px 0">🌎 ✨ ❓</p><p>Los titulares recuperaron sus signos de pregunta. Los precios aprendieron a explicarse. Y la escuela descubrió que una duda puede ser una buena respuesta.</p><p><strong>Tiempo:</strong> ${mins}:${secs} · <strong>Combates superados:</strong> ${S.victories} · <strong>Fragmentos:</strong> ${S.shards}/3</p><p class="note">Historia, pixel art y diálogos originales para este homenaje no oficial. Los personajes de Mafalda pertenecen a sus respectivos titulares.</p>`, 'ending');$('wander').onclick=()=>{S.zone='plaza';S.x=13;S.y=11;closeOverlay();};$('restart').onclick=()=>{S=newState();begin(false)};save();}
+function recruit(id){if(S.recruited.includes(id))return;S.recruited.push(id);if(S.selected.length<3)S.selected.push(id);chirp();toast(`${people[id].name} se sumó al grupo`);save();}
+function showTeam(){if(!['explore','panel'].includes(mode))return;const html=`<div class="kicker">Compañeros de aventura</div><h2>Tu equipo</h2><p>Elegí hasta <strong>3 personajes</strong> para los combates. Mafalda siempre va primera.</p><div class="partyList">${['mafalda','felipe','susanita','manolito','miguelito','libertad'].map(id=>{const p=people[id],unlocked=S.recruited.includes(id),chosen=S.selected.includes(id),st=S.stats[id];return `<button class="partyEntry ${chosen?'selected':''}" data-party="${id}" ${!unlocked||id==='mafalda'?'disabled':''}><b>${chosen?'✓ ':''}${p.name}</b><small>${unlocked?`♥ ${st.hp}/${p.hp} · ✦ ${st.pp}/${p.pp}`:'Todavía no se sumó'}</small><small>${p.skill||''}</small></button>`}).join('')}</div><p class="note">${S.selected.length}/3 elegidos · Galletitas curativas: ${S.cookies}</p><div class="buttonrow"><button class="btn" id="closePanel">VOLVER</button></div>`;overlay(html,'panel');$('closePanel').onclick=closeOverlay;document.querySelectorAll('[data-party]').forEach(el=>el.onclick=()=>{const id=el.dataset.party;if(id==='mafalda')return;const pos=S.selected.indexOf(id);if(pos!==-1)S.selected.splice(pos,1);else if(S.selected.length<3)S.selected.push(id);else{S.selected.splice(2,1,id)}bleep(660,.07);save();showTeam();});}
+function showJournal(){if(!['explore','panel'].includes(mode))return;const stageNames=['PRÓLOGO: LA RADIO','CAP. 1: LAS NOTICIAS','CAP. 2: LA ECONOMÍA','CAP. 3: LA ESCUELA','FINAL: LA OFICINA','EPÍLOGO'];const mins=Math.floor(S.seconds/60);overlay(`<div class="kicker">Cuaderno de aventuras</div><h2>${stageNames[S.stage]}</h2><p><strong>Misión actual:</strong> ${$('questText').textContent}</p><h3>Las tres preguntas perdidas</h3><p>${S.shards>=1?'✦':'◇'} ¿Qué está pasando? — ${S.shards>=1?'RECUPERADA':'pendiente'}<br>${S.shards>=2?'✦':'◇'} ¿Cuánto vale? — ${S.shards>=2?'RECUPERADA':'pendiente'}<br>${S.shards>=3?'✦':'◇'} ¿Por qué? — ${S.shards>=3?'RECUPERADA':'pendiente'}</p><h3>Pequeñas historias opcionales</h3><p>${S.flags.toyDelivered?'✓':'○'} Un juguete para Guille<br>${S.flags.letterDelivered?'✓':'○'} El mensaje de Muriel<br>${S.flags.turtle?'✓':'○'} La paciencia de Burocracia</p><p class="note">Tiempo de juego: ${mins} min · Combates ganados: ${S.victories} · Galletitas: ${S.cookies}</p><div class="buttonrow"><button class="btn" id="closePanel">VOLVER</button><button class="btn secondary" id="openTeamFromJournal">CAMBIAR EQUIPO</button></div>`,'panel');$('closePanel').onclick=closeOverlay;$('openTeamFromJournal').onclick=()=>{mode='explore';showTeam()};}
+function speakTo(id){
+ const p=people[id]; const generic=()=>showDialog(lines([p.name,'Hay días en que uno sale a dar una vuelta y el mundo le da dos.']));
+ if(id==='raquel')return showDialog(lines(['Raquel',S.stage===0?'La radio está en la mesa, cerca de la ventana. ¿La escuchás vos?':'Qué raro: hace media hora que nadie discute por la sopa. Eso sí que me preocupa.'],['Mafalda',S.stage===0?'Voy. Ojalá hoy dé alguna buena noticia.':'Mamá, si la sopa viene a salvar al mundo, preferiría el otro final.']));
+ if(id==='papa')return showDialog(lines(['Papá',S.stage===0?'Ayer cambié las pilas de la radio. Espero que eso no haya afectado a la realidad.':'Yo quería salir a comprar fertilizante y terminé preocupándome por el futuro.'],['Mafalda','Parece que a la realidad también le vendrían bien unas pilas nuevas.']));
+ if(id==='guille'){
+  if(!S.flags.guilleAsked){S.flags.guilleAsked=true;showDialog(lines(['Guille','¡Mafadita! ¡Mi ato!'],['Mafalda','¿Tu auto? ¿Dónde lo dejaste?'],['Guille','¡No tá! ¡Quielo oto!'],['Mafalda','Así empieza la economía mundial. Bueno, voy a mirar en el almacén.']));return;}
+  if(S.flags.toyPicked&&!S.flags.toyDelivered){S.flags.toyDelivered=true;S.cookies+=3;chirp();showDialog(lines(['Mafalda','Mirá lo que encontré en el almacén. Un autito sin intereses.'],['Guille','¡Bum! ¡Ato!'],['Raquel','Te guardé tres galletitas por hacerle ese favor.'],['Mafalda','Qué raro recibir un premio por no comprar cosas inútiles... bueno, esta sí era útil.']));return;}
+  return showDialog(lines(['Guille',S.flags.toyDelivered?'¡Brrruuum! ¡Brrruuum!':'¿Y mi ato?'],['Mafalda',S.flags.toyDelivered?'Ojalá todos los motores anduvieran con imaginación.':'Estoy buscando, Guille.']));
+ }
+ if(id==='burocracia'){
+  if(S.stage>=2&&!S.flags.turtle){S.flags.turtle=true;S.cookies+=2;chirp();return showDialog(lines(['Narrador','Burocracia mira fijamente una hoja de lechuga.'],['Mafalda','Hay gente que confunde ir despacio con no llegar nunca.'],['Narrador','Burocracia da un paso. Es un acontecimiento.'],['Mafalda','Bueno, al menos ella no pretende que el trámite sea una virtud.'],['Narrador','Encontraste dos galletitas que habían quedado debajo de la maceta.']));}
+  return showDialog(lines(['Narrador','Burocracia hace un movimiento casi imperceptible.'],['Mafalda','¿Sabés, Burocracia? A veces la política se mueve igual que vos, pero sin la parte simpática.']));
+ }
+ if(id==='felipe'){
+  if(!S.flags.felipe){S.flags.felipe=true;recruit('felipe');return showDialog(lines(['Felipe','Mafalda, ¡menos mal que viniste! La radio dijo que preguntar es peligroso.'],['Mafalda','Eso suena a algo que diría una respuesta que tiene miedo.'],['Felipe','Yo tenía planeado hacer la tarea... pero ahora me preocupa que esté prohibido preguntar qué tarea era.'],['Mafalda','Necesito que vengas. Vamos a averiguar quién está apagando las dudas.'],['Felipe','¿Podemos averiguarlo después de la siesta?'],['Mafalda','No.'],['Felipe','Bueno. Me lo temía.']));}
+  if(S.flags.murielLetter&&!S.flags.letterDelivered){S.flags.letterDelivered=true;S.cookies+=2;chirp();return showDialog(lines(['Mafalda','Muriel me pidió que te diera este papelito.'],['Felipe','¿Muriel? ¿A mí? ¿No se habrá confundido de Felipe?'],['Narrador','El papel dice: «¿Me prestás el cuaderno de clase?».'],['Felipe','¡Es la frase más hermosa que leí en mi vida!'],['Mafalda','Es un pedido de apuntes, Felipe. No un soneto.'],['Felipe','¡Los sonetos nunca me habían pedido el cuaderno!'],['Narrador','Felipe te regala dos galletitas por hacer de correo.']));}
+  return showDialog(lines(['Felipe',S.stage>=4?'En las aventuras siempre hay un castillo final. ¿Por qué a nosotros nos tocó una oficina?':'No sé si soy valiente. Lo único que sé es que cuando me asusto imagino que soy alguien valiente.'],['Mafalda','Por ahora sirve.']));
+ }
+ if(id==='susanita'){
+  if(!S.flags.susanita){S.flags.susanita=true;recruit('susanita');return showDialog(lines(['Susanita','¡Mafalda! ¿Escuchaste el último escándalo? ¡Ahora dicen que está mal hacer preguntas!'],['Mafalda','Justo vos, que tenés un servicio de noticias propio.'],['Susanita','¡No es lo mismo! Yo no hago preguntas. Averiguo cosas importantes, como quién va a casarse primero.'],['Mafalda','¿Y si te digo que quieren prohibir también los chismes?'],['Susanita','¡Es un atentado contra la vida social! Voy con ustedes.'],['Mafalda','Me sirve la indignación, aunque venga por otro camino.']));}
+  return showDialog(lines(['Susanita','Si vamos a salvar al mundo, propongo que nos saquemos una foto después. Bien peinados.'],['Mafalda','Primero tratemos de que haya un después.']));
+ }
+ if(id==='libertad'){
+  if(!S.flags.libertad){S.flags.libertad=true;recruit('libertad');return showDialog(lines(['Libertad','¿No hacer preguntas? Qué cómoda manera de gobernar un problema: prohibirle el signo de interrogación.'],['Mafalda','Necesitamos gente que no se achique frente a una respuesta gigante.'],['Libertad','Eso de no achicarse me viene bárbaro. Ya soy bastante chica.'],['Mafalda','¿Te sumás?'],['Libertad','Sí. Pero no porque me lo pidas: porque se me da la gana.']));}
+  return showDialog(lines(['Libertad','Las ideas pueden ser cortas y contundentes. No hace falta meterlas en una oficina para que parezcan grandes.']));
+ }
+ if(id==='manolito'){
+  if(!S.flags.manolito){S.flags.manolito=true;recruit('manolito');return showDialog(lines(['Manolito','¡Mafalda! Tenemos un problema de precios.'],['Mafalda','¿En serio? Para vos eso debe ser como una epidemia.'],['Manolito','¡Peor! La caja dice que un caramelo cuesta un millón, pero el cliente no puede preguntar por qué.'],['Mafalda','Alguien le robó al comercio el sentido común.'],['Manolito','Y lo peor es que no dejó recibo. Voy con ustedes. Si recuperamos la lógica, recuperamos los clientes.']));}
+  return showDialog(lines(['Manolito',S.stage>=3?'La ciencia todavía no descubrió nada más misterioso que el precio de una cosa antes de que la etiqueten.':'Si esta aventura tuviera un patrocinador, ya estaríamos resolviendo todo con más eficiencia.'],['Mafalda','Y menos libertad, probablemente.']));
+ }
+ if(id==='donmanolo'){
+  if(S.stage===2&&!S.flags.donmanolo){S.flags.donmanolo=true;return showDialog(lines(['Don Manolo','¡Nena! Hoy los precios cambian solos. Pongo uno por la mañana y a la tarde aparece uno que no es mío.'],['Mafalda','¿Y quién decide lo que valen las cosas?'],['Don Manolo','Si lo supiera no tendría que abrir la caja para enterarme.'],['Manolito','Papá, tenemos que defender la dignidad del negocio.'],['Mafalda','Y, de paso, la del cliente. Miraremos la pizarra.']));}
+  return showDialog(lines(['Don Manolo','Tengo más mercadería que respuestas. ¡Y las respuestas no se pueden poner en oferta!']));
+ }
+ if(id==='madreManolito')return showDialog(lines(['Mamá de Manolito','Acá las cosas se hacen con esfuerzo. Pero últimamente el esfuerzo no figura en el ticket.'],['Mafalda','A lo mejor hay que agregarle una línea de explicaciones.']));
+ if(id==='miguelito'){
+  if(!S.flags.miguelito){S.flags.miguelito=true;recruit('miguelito');return showDialog(lines(['Miguelito','Estaba pensando una cosa. Si yo me hago una pregunta y no me la contesto, ¿es una pregunta huérfana?'],['Mafalda','Es una pregunta excelente. Y justo ahora quieren prohibirlas.'],['Miguelito','¡Entonces es una pregunta perseguida! ¿Tengo que esconderla?'],['Mafalda','Mejor vení con nosotros y llevá todas las que tengas.'],['Miguelito','Tengo siete. Ocho, si cuento la de por qué tengo siete.']));}
+  return showDialog(lines(['Miguelito','A veces las cosas son tan evidentes que no se ven. Como mi nariz, que siempre está ahí delante.']));
+ }
+ if(id==='maestra'){
+  if(S.stage===3&&!S.flags.maestra){S.flags.maestra=true;return showDialog(lines(['Maestra','Chicos, la escuela recibió una nueva circular: habrá una sola respuesta correcta para todas las preguntas.'],['Mafalda','¿Cuál?'],['Maestra','«Porque siempre fue así».'],['Libertad','Esa es una explicación que viene sin explicarse.'],['Felipe','Señorita, ¿entonces podemos entregar todas las tareas en blanco?'],['Maestra','No, Felipe. Y eso es lo único que sigue estando perfectamente claro.'],['Mafalda','Voy a mirar la carpeta. Algo no me cierra.']));}
+  return showDialog(lines(['Maestra','Los libros son para abrirlos. Si te ordenan cerrarlos, sospechá de la orden.']));
+ }
+ if(id==='muriel'){
+  if(!S.flags.murielLetter){S.flags.murielLetter=true;return showDialog(lines(['Muriel','Hola... ¿vos sos amiga de Felipe?'],['Mafalda','Sí. ¿Necesitás algo?'],['Muriel','¿Le podés dar este papel? Le quería pedir el cuaderno de la escuela.'],['Mafalda','Se lo doy. Aunque no sé si su corazón está preparado para un pedido tan importante.'],['Muriel','¿Qué?'],['Mafalda','Nada, cosas de héroes.']));}
+  return showDialog(lines(['Muriel',S.flags.letterDelivered?'Gracias por darle el papel. Felipe salió corriendo y chocó contra un árbol.':'¿Le diste el mensaje a Felipe?']));
+ }
+ if(id==='madreLibertad')return showDialog(lines(['Mamá de Libertad','Mi hija hace preguntas desde que aprendió a hablar. Y antes, las hacía con la cara.'],['Mafalda','Es una forma de educación bastante prometedora.']));
+ if(id==='tiaPaca')return showDialog(lines(['Tía Paca','¡Mafaldita, vení que te doy un besito!'],['Mafalda','Tía, ¿podemos declarar una tregua afectiva?'],['Tía Paca','¡Ay, qué graciosa! ¡Otro besito!'],['Mafalda','Hay negociaciones más difíciles que las de las Naciones Unidas.']));
+ if(id==='madreSusanita')return showDialog(lines(['Mamá de Susanita','La gente ya no conversa como antes. ¡Ni siquiera se mete en los asuntos de los demás!'],['Mafalda','Es que para conversar hay que tener algo que decir, además de algo que averiguar.']));
+ if(id==='madreFelipe')return showDialog(lines(['Mamá de Felipe','Felipe salió diciendo que iba a salvar al mundo. Ayer salió diciendo que iba a hacer la tarea.'],['Mafalda','La diferencia es que esta vez es posible que cumpla.']));
+ if(id==='madreMiguelito')return showDialog(lines(['Mamá de Miguelito','Le pedí que ordenara su cuarto y me preguntó qué es el orden.'],['Mafalda','No le conteste con otra pregunta. Es contagioso.']));
+ if(id==='padreSusanita')return showDialog(lines(['Papá de Susanita','Tengo trabajo de vendedor, pero cada vez cuesta más convencer a la gente de las cosas.'],['Mafalda','A veces eso significa que la gente está pensando. Buena señal.']));
+ return generic();
+}
+function propInteract(id){
+ if(id==='radio'){
+  if(S.stage===0){S.stage=1;updateHud();return showDialog(lines(['Radio','ATENCIÓN. El Ministerio del Todo Bien informa: a partir de hoy, las preguntas quedan suspendidas hasta nuevo aviso.'],['Radio','Los problemas se considerarán resueltos siempre que nadie los mencione.'],['Mafalda','Si se resolvieran las cosas por no hablar de ellas, el mundo sería una maravilla de silencio.'],['Radio','Para mayor tranquilidad, se retiran del barrio tres preguntas peligrosas.'],['Mafalda','¿Cuáles?'],['Radio','Esa pregunta también está suspendida.'],['Mafalda','Ah. Esto necesita a Felipe. Y seguramente a todos los demás. ¡A la plaza!']));}
+  return showDialog(lines(['Radio',S.stage>=5?'ACTUALIZACIÓN: se permite volver a preguntar. El Ministerio pide disculpas por las molestias.':'INFORMACIÓN OFICIAL: TODO ESTÁ BIEN. Le recordamos que dudar puede generar molestias.'],['Mafalda','Curioso. Cuanto más lo repiten, menos me lo creo.']));
+ }
+ if(id==='soup')return showDialog(lines(['Narrador','Un plato de sopa espera pacientemente sobre la mesa.'],['Mafalda','La prueba de que hay cosas que siguen sin resolverse aunque uno las mire durante horas.']));
+ if(id==='plant')return showDialog(lines(['Mafalda','La planta de papá crece sin informes ni declaraciones. Capaz tendríamos que preguntarle cómo hace.']));
+ if(id==='antenna'){
+  if(S.stage===1){
+   const missing=[];if(!S.flags.felipe)missing.push('Felipe');if(!S.flags.susanita)missing.push('Susanita');if(!S.flags.libertad)missing.push('Libertad');
+   if(missing.length)return showDialog(lines(['Mafalda',`La antena está repitiendo noticias rarísimas. Mejor hablar primero con ${missing.join(', ')}.`]));
+   return showDialog(lines(['Radio de la plaza','ÚLTIMO MOMENTO: ha quedado demostrado que las preguntas son la principal causa de las respuestas.'],['Felipe','Eso... técnicamente puede ser verdad.'],['Mafalda','No cuando usan esa frase para pedir que dejemos de pensar.'],['Susanita','¡Además, ese titular no tiene una sola fuente!'],['Libertad','Que venga el titular. Le vamos a hacer una entrevista.'] ),()=>startBattle('radio'));
+  }
+  if(S.stage===4){S.zone='office';S.x=13;S.y=13;updateHud();toast('Una puerta imposible se abrió en el aire');return showDialog(lines(['Narrador','Los tres fragmentos giran alrededor de la antena. La realidad se dobla como una hoja de periódico.'],['Miguelito','¿Y si entramos en una idea? ¿Tenemos que sacarnos los zapatos?'],['Mafalda','Si adentro está el responsable de esto, mejor llevá tus preguntas.'],['Libertad','Y no firmes nada sin leerlo.']));}
+  if(S.stage===5)return showDialog(lines(['Radio de la plaza','Una noticia extraordinaria: hoy las personas volvieron a hacer preguntas.'],['Mafalda','Al fin una noticia que se puede discutir.']));
+  return showDialog(lines(['Mafalda','La antena ya no grita. Nos faltan otros problemas por resolver.']));
+ }
+ if(id==='bench')return showDialog(lines(['Mafalda','Un banco para sentarse a pensar. La plaza tiene más infraestructura filosófica que muchas oficinas.']));
+ if(id==='register'){
+  if(S.stage!==2)return showDialog(lines(['Narrador','La caja suena: «cling-cling». Por ahora, el precio de las preguntas no figura.']));
+  const missing=[];if(!S.flags.manolito)missing.push('Manolito');if(!S.flags.donmanolo)missing.push('Don Manolo');if(!S.flags.price)missing.push('la pizarra');
+  if(missing.length)return showDialog(lines(['Mafalda',`Antes de discutir con esta caja, necesito hablar con ${missing.join(', ')}.`]));
+  return showDialog(lines(['Caja registradora','¡PLIN! Nuevo precio del aire: 999.999. ¡PLIN! No se admiten preguntas.'],['Manolito','¡Esto es competencia desleal! ¡Está vendiendo algo que ni siquiera se puede guardar en el depósito!'],['Mafalda','¿Cómo fijás un precio si no sabés explicar lo que vale?'],['Caja registradora','¡PLIN! ¡PREGUNTA NO AUTORIZADA!'],['Manolito','¡Me parece que vamos a tener que hacer una devolución a golpes de razón!'] ),()=>startBattle('store'));
+ }
+ if(id==='price'){
+  if(S.stage===2&&!S.flags.price){S.flags.price=true;return showDialog(lines(['Narrador','La pizarra anuncia: «PAN: 900.000 / EXPLICACIONES: AGOTADAS».'],['Mafalda','El problema del pan no debería ser que se necesite una calculadora para mirarlo.'],['Manolito','¡Pero quién escribió eso! ¡Ni mi papá cobra tanto por una explicación!'],['Mafalda','Ya sabemos qué pasó. Vamos a discutirlo con la caja.']));}
+  return showDialog(lines(['Narrador','OFERTA: dos preguntas por el precio de una. Sólo por hoy.'],['Mafalda','Es lindo que algo valioso no venga con letra chica.']));
+ }
+ if(id==='toy'){
+  if(!S.flags.toyPicked){S.flags.toyPicked=true;chirp();return showDialog(lines(['Narrador','Encontraste un pequeño autito de madera en un estante.'],['Mafalda','Esto es justo lo que Guille andaba buscando.'],['Manolito','No es un regalo. Es una inversión en la próxima generación de clientes.'],['Mafalda','¿Ni un descuento por fraternidad?'],['Manolito','Ese departamento todavía no abrió.']));}
+  return showDialog(lines(['Narrador','El estante de juguetes está casi vacío.']));
+ }
+ if(id==='blackboard'){
+  if(S.stage!==3)return showDialog(lines(['Narrador','Un pizarrón limpio. Un milagro que seguramente dura cinco minutos.']));
+  const missing=[];if(!S.flags.miguelito)missing.push('Miguelito');if(!S.flags.maestra)missing.push('la maestra');if(!S.flags.homework)missing.push('la carpeta');
+  if(missing.length)return showDialog(lines(['Mafalda',`Hay algo muy raro escrito ahí. Primero quiero hablar con ${missing.join(', ')}.`]));
+  return showDialog(lines(['Pizarrón','LA RESPUESTA CORRECTA ES: PORQUE SÍ.'],['Felipe','¡Qué alivio! ¡Una prueba donde todas las preguntas se responden igual!'],['Mafalda','Felipe, eso sería un alivio si la escuela fuera una fábrica de silencio.'],['Miguelito','Yo hice esa pregunta: ¿por qué sí? Y me respondieron: porque sí.'],['Libertad','Entonces es hora de enseñarles a los que enseñan.'],['Pizarrón','ERROR. SE DETECTÓ PENSAMIENTO NO PROGRAMADO.'] ),()=>startBattle('exam'));
+ }
+ if(id==='homework'){
+  if(S.stage===3&&!S.flags.homework){S.flags.homework=true;return showDialog(lines(['Narrador','La carpeta contiene una única consigna: «Copiar cien veces: no hay nada que preguntar».'],['Miguelito','Si lo copio cien veces, ¿es cien veces más verdad?'],['Mafalda','No. Un error repetido sigue siendo un error, pero con dolor de mano.'],['Felipe','Menos mal. Pensé que íbamos a tener que escribirlo.'],['Mafalda','El pizarrón es el origen. Vamos a ver qué dice.']));}
+  return showDialog(lines(['Narrador','En el margen, alguien dibujó un enorme signo de pregunta.']));
+ }
+ if(id==='boss'){
+  if(S.stage===4)return showDialog(lines(['Señor Todo Bien','Bienvenidos a la Oficina del Todo Bien. Si tienen un problema, llenen un formulario. Si tienen una pregunta, no entren.'],['Mafalda','Vinimos a devolver tres preguntas que le sacaron al barrio.'],['Señor Todo Bien','Imposible. Sin preguntas todos están de acuerdo. El acuerdo es un gran éxito administrativo.'],['Libertad','No. El silencio no es un acuerdo.'],['Manolito','Y un acuerdo que nadie firmó no sirve ni para abrir una cuenta.'],['Felipe','¿No podríamos discutir esto con menos monstruosidad?'],['Señor Todo Bien','FORMULARIO RECHAZADO. ¡GUARDIAS, DESPIERTEN LAS CERTEZAS!'],['Mafalda','Bueno. Ya empezamos a encontrar respuestas.'] ),()=>startBattle('boss'));
+  return showDialog(lines(['Narrador','Queda una silla vacía. Sobre ella, una nota: «Vuelvo cuando se me ocurra algo».']));
+ }
+ if(id==='paper')return showDialog(lines(['Narrador','Formulario 27-B: «Para presentar una pregunta, explique por qué no le alcanza con las respuestas».'],['Mafalda','Peligrosísimo. Es un formulario que se contesta solo.']));
+ if(id==='homegate'){changeZone('home',13,12);return;}
+ if(id==='marketgate'){changeZone('market',12,12);return;}
+ if(id==='schoolgate'){changeZone('school',12,12);return;}
+ if(id==='plazagate'){changeZone('plaza',2,8);return;}
+}
+function bossClear(key){S.victories++;S.cookies+=3;for(const id of S.recruited){S.stats[id].hp=Math.min(people[id].hp,S.stats[id].hp+25);S.stats[id].pp=Math.min(people[id].pp,S.stats[id].pp+12);}if(key==='radio'){S.stage=2;S.shards=1;S.flags.radioClear=true;updateHud();chirp();showDialog(lines(['Narrador','¡Recuperaste la primera pregunta: «¿QUÉ ESTÁ PASANDO?»!'],['Radio','RECTIFICACIÓN: hacer preguntas podría ser útil para entender una noticia.'],['Mafalda','Qué concepto revolucionario: antes de opinar, entender.'],['Manolito','¡Hay algo raro en el almacén! Mi papá me dejó un mensaje con treinta signos de peso.'],['Mafalda','Entonces vamos para allá. La siguiente pregunta nos espera en la caja.'],['Narrador','Capítulo 2: EL PRECIO DE LAS COSAS.']));}
+ else if(key==='store'){S.stage=3;S.shards=2;updateHud();chirp();showDialog(lines(['Narrador','¡Recuperaste la segunda pregunta: «¿CUÁNTO VALE?»!'],['Caja registradora','PLIN. Precio actualizado: lo justo cuesta lo que debería costar.'],['Manolito','¿Y eso en pesos cuánto sería?'],['Mafalda','Lo importante es que podamos preguntar antes de pagar.'],['Felipe','¿Podemos ir a la escuela ahora? Hay una cosa rara en el pizarrón.'],['Mafalda','Vamos. Sos el único chico del mundo que usa el colegio como advertencia de peligro.'],['Narrador','Capítulo 3: EL PORQUÉ DE LAS COSAS.']));}
+ else if(key==='exam'){S.stage=4;S.shards=3;updateHud();chirp();showDialog(lines(['Narrador','¡Recuperaste la tercera pregunta: «¿POR QUÉ?»!'],['Maestra','Los chicos acaban de aprobar una prueba que nadie había podido explicar.'],['Miguelito','¡Y eso que todavía no entendí por qué tengo que entender todo!'],['Libertad','No tenemos que entender todo. Tenemos derecho a buscar entenderlo.'],['Mafalda','La antena de la plaza debe estar conectada con el que organizó este disparate.'],['Felipe','Decime que es un jefe final chico. Chiquitito.'],['Mafalda','No te prometo nada.'],['Narrador','Capítulo final: LA OFICINA DEL TODO BIEN.']));}
+ else if(key==='boss'){introWin();}
+ save();}
+function startBattle(which){const enemy={...ENEMIES[which]};combat={which,enemy,hp:enemy.hp,turn:0,weaken:0,round:1};mode='battle';$('innerHud').style.display='none';$('battle').classList.remove('hidden');$('dialogue').classList.add('hidden');bleep(160,.16,'sawtooth',.06);bleep(210,.18,'square',.035);refreshBattle(`¡Apareció ${enemy.name}!`);save();}
+function fighters(){let arr=S.selected.filter(id=>S.stats[id].hp>0);if(!arr.length){for(const id of S.selected)S.stats[id].hp=Math.max(1,Math.round(people[id].hp*.6));arr=S.selected.slice();}return arr;}
+function attacker(){const active=fighters();if(combat.turn>=active.length)combat.turn=0;return active[combat.turn];}
+function refreshBattle(message){if(!combat)return;const e=combat.enemy,a=attacker(),p=people[a];$('enemyName').textContent=e.name;$('enemyDesc').textContent=e.desc;$('enemyFace').textContent=e.face;$('enemyFlavor').textContent=e.flavor;$('enemyHealth').textContent=`♥ ${Math.max(0,combat.hp)} / ${e.hp}`;
+ $('partyBar').innerHTML=S.selected.map(id=>{const who=people[id],st=S.stats[id];return `<div class="partyunit ${id===a?'current':''} ${st.hp<=0?'dead':''}"><b>${who.name}</b>♥ ${Math.max(0,st.hp)}/${who.hp} · ✦ ${st.pp}/${who.pp}<div class="hpbar"><i style="width:${Math.max(0,100*st.hp/who.hp)}%"></i></div></div>`}).join('');
+ $('battleMsg').textContent=message||`Turno de ${p.name}. ${p.skill}: ${p.cost} ideas.`;
+ const buttons=document.querySelectorAll('[data-act]');buttons[1].textContent=`2 · ${p.short}`;buttons[3].textContent=`4 · GALLETITA (${S.cookies})`;buttons[1].disabled=S.stats[a].pp<p.cost;buttons[3].disabled=S.cookies<=0;
+}
+function battleAct(kind){if(mode!=='battle'||!combat)return;const id=attacker(),p=people[id],st=S.stats[id],e=combat.enemy;let msg='',damage=0,success=false;
+ const r=(min,max)=>Math.floor(min+Math.random()*(max-min+1));
+ if(kind==='attack'){damage=Math.max(1,p.atk+r(4,9)-e.def);msg=`${p.name} discute con argumentos sólidos. ¡${damage} de daño!`;}
+ if(kind==='skill'){
+  if(st.pp<p.cost){refreshBattle('Te faltan ideas para esa habilidad.');bleep(180,.08);return;}
+  st.pp-=p.cost;
+  if(id==='mafalda'){damage=17+r(1,7);combat.weaken=Math.max(combat.weaken,2);msg=`Mafalda hace una pregunta que descoloca al enemigo. ¡${damage}! (ataque enemigo reducido)`;}
+  if(id==='felipe'){damage=23+r(1,9);msg=`Felipe imagina una escena heroica. Contra todo pronóstico, funciona. ¡${damage}!`;}
+  if(id==='susanita'){damage=16+r(2,8);combat.weaken=Math.max(combat.weaken,2);msg=`Susanita difunde un rumor devastador entre las certezas. ¡${damage}!`;}
+  if(id==='manolito'){damage=25+r(0,9);msg=`Manolito lanza una oferta que nadie puede rechazar. ¡${damage}!`;}
+  if(id==='miguelito'){damage=19+r(1,8);st.hp=Math.min(p.hp,st.hp+7);msg=`Miguelito plantea una duda sin fondo. ¡${damage}! Y recupera 7 ♥.`;}
+  if(id==='libertad'){damage=28+r(1,7);msg=`Libertad dice exactamente lo necesario. ¡${damage} de daño directo!`;}
+ }
+ if(kind==='talk'){
+  const ratio=combat.hp/e.hp;const chance=ratio<.25?.97:ratio<.50?.55:ratio<.7?.25:.08;
+  if(Math.random()<chance){success=true;msg=`${p.name} logra que ${e.name} se replantee todo. ¡Se rindió!`;}
+  else{msg=`${p.name} intenta razonar con ${e.name}, pero todavía no quiere escuchar.`;}
+ }
+ if(kind==='item'){
+  if(S.cookies<=0){refreshBattle('No quedan galletitas.');return;}
+  S.cookies--;const old=st.hp;st.hp=Math.min(p.hp,st.hp+32);st.pp=Math.min(p.pp,st.pp+4);msg=`${p.name} come una galletita. Recupera ${st.hp-old} ♥ y 4 ideas.`;bleep(710,.12,'sine');
+ }
+ if(damage){combat.hp=Math.max(0,combat.hp-damage);bleep(225,.085,'sawtooth');}
+ if(success||combat.hp<=0){finishBattle(msg);return;}
+ const active=fighters();combat.turn++;
+ if(combat.turn>=active.length){combat.turn=0;combat.round++;const alive=fighters(),victim=alive[r(0,alive.length-1)];const blow=Math.max(2,e.atk+r(-3,3)-combat.weaken*3);S.stats[victim].hp=Math.max(0,S.stats[victim].hp-blow);combat.weaken=Math.max(0,combat.weaken-1);msg+=`  ·  ${e.name} contraataca: ${people[victim].name} pierde ${blow} ♥.`;bleep(132,.15,'square',.025);
+  if(S.selected.every(x=>S.stats[x].hp<=0)){loseBattle();return;}
+  if(S.stats[attacker()].hp<=0){combat.turn=0;}
+ }
+ refreshBattle(msg);save();
+}
+function finishBattle(reason){const key=combat.which;combat=null;$('battle').classList.add('hidden');$('innerHud').style.display='';mode='explore';bleep(900,.14,'sine');toast('¡VICTORIA! '+reason.slice(0,38));
+ if(['radio','store','exam','boss'].includes(key)){bossClear(key);}else{S.victories++;S.cookies+=1;showDialog(lines(['Narrador',`${reason} Recuperaste una galletita y algo de tranquilidad.`],['Mafalda','Qué útil sería discutir todas las cosas sin tener que pelearse por ellas.']));save();}
+}
+function loseBattle(){const key=combat.which;combat=null;$('battle').classList.add('hidden');$('innerHud').style.display='';mode='explore';for(const id of S.selected){S.stats[id].hp=Math.max(Math.round(people[id].hp*.65),1);S.stats[id].pp=Math.max(Math.round(people[id].pp*.65),1);}S.cookies+=2;showDialog(lines(['Narrador','La pandilla perdió esta discusión, pero todavía no la conversación.'],['Mafalda','Una derrota no es una respuesta. Podemos volver a intentarlo.'],['Narrador','El equipo se recuperó un poco y encontró 2 galletitas.']));save();}
+function changeZone(z,x,y){if(z==='street'&&S.stage===0){showDialog(lines(['Mafalda','Primero tengo que escuchar esa radio. Si el mundo está haciendo ruido, quiero saber por qué.']));return;}S.zone=z;S.x=x;S.y=y;trail=[];updateHud();save();bleep(510,.065,'triangle');}
+function passable(zone,x,y){if(x<0||x>=W||y<0||y>=H)return false;
+ if(zone==='home')return ((x>=2&&x<=23&&y>=3&&y<=13)||x===13&&y===14)&&![[12,7],[22,5],[17,5],[3,8],[4,8],[18,7],[19,7]].some(c=>c[0]===x&&c[1]===y);
+ if(zone==='street')return ((x>=1&&x<=24&&y>=5&&y<=12)||(x===7&&y===13)||(x===18&&y===4)||(x===23&&y===4)||(x===25&&y===8))&& ![[7,5],[8,5],[21,12]].some(c=>c[0]===x&&c[1]===y);
+ if(zone==='plaza')return ((x>=1&&x<=24&&y>=1&&y<=14)||(x===0&&y===8))&&![[3,3],[22,3],[3,12],[22,12],[13,6],[10,10]].some(c=>c[0]===x&&c[1]===y);
+ if(zone==='market')return ((x>=2&&x<=23&&y>=3&&y<=13)||(x===12&&y===14))&&![[13,5],[5,4],[6,11],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6],[10,6],[17,10],[18,10],[19,10],[20,10]].some(c=>c[0]===x&&c[1]===y);
+ if(zone==='school')return ((x>=2&&x<=23&&y>=3&&y<=13)||(x===12&&y===14))&&![[13,4],[8,7],[7,8],[10,8],[14,8],[17,8],[7,11],[10,11],[14,11],[17,11]].some(c=>c[0]===x&&c[1]===y);
+ if(zone==='office')return (x>=2&&x<=23&&y>=2&&y<=14)&&![[13,5],[20,9]].some(c=>c[0]===x&&c[1]===y);
+ return true;
+}
+let trail=[];
+function step(dir){if(mode!=='explore'||moveCooldown>0)return;const [dx,dy]={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[dir]||[0,0];if(!dx&&!dy)return;S.face=dir;const nx=S.x+dx,ny=S.y+dy;
+ const neighbors=(NPCS[S.zone]||[]).some(n=>n.x===nx&&n.y===ny);
+ if(passable(S.zone,nx,ny)&&!neighbors){trail.unshift({x:S.x,y:S.y});trail=trail.slice(0,12);S.x=nx;S.y=ny;S.steps++;bleep(255,.018,'triangle',.007);moveCooldown=.115;
+  if(onGate())return;
+  if(['street','plaza','market','school'].includes(S.zone)&&S.stage>0&&S.stage<5)maybeEncounter();
+ }else{moveCooldown=.085;}}
+function onGate(){const z=S.zone,x=S.x,y=S.y;
+ if(z==='home'&&x===13&&y===14){changeZone('street',7,11);return true;}
+ if(z==='street'&&x===7&&y===13){changeZone('home',13,12);return true;}
+ if(z==='street'&&x===18&&y===4){changeZone('market',12,12);return true;}
+ if(z==='market'&&x===12&&y===14){changeZone('street',18,7);return true;}
+ if(z==='street'&&x===23&&y===4){changeZone('school',12,12);return true;}
+ if(z==='school'&&x===12&&y===14){changeZone('street',23,7);return true;}
+ if(z==='street'&&x===25&&y===8){changeZone('plaza',2,8);return true;}
+ if(z==='plaza'&&x===0&&y===8){changeZone('street',24,8);return true;}
+ if(z==='office'&&x===13&&y===14){changeZone('plaza',13,11);return true;}
+ return false;
+}
+function maybeEncounter(){const z=S.zone;const allowed=(z==='plaza'&&S.stage===1)||(z==='market'&&S.stage===2)||(z==='school'&&S.stage===3)||(z==='street'&&S.stage>=2&&S.stage<=4);
+ if(!allowed)return;
+ const count=S.encounters[z]||0;const limit=z==='street'?2:1;
+ if(count>=limit)return;
+ const threshold=z==='street'?24:38;const trigger=(S.steps+((z.length*7)%9))%threshold===0;
+ if(trigger){S.encounters[z]=count+1;const key=z==='school'?'homework':z==='market'?'queue':'echo';showDialog(lines(['Narrador',z==='street'?'Un rumor salido de ninguna parte les bloquea el camino.':z==='school'?'Una tarea rebelde salta del pupitre.':z==='market'?'Una fila de clientes se enreda y toma vida propia.':'Una noticia empieza a repetirse entre los árboles.'],['Mafalda','Si es una idea mala, vamos a tratar de conversarla.'] ),()=>startBattle(key));}
+}
+function interact(){if(mode==='dialogue'){nextDialog();return;}if(mode!=='explore')return;
+ const candidates=[];
+ for(const n of (NPCS[S.zone]||[])){const d=Math.abs(S.x-n.x)+Math.abs(S.y-n.y);if(d<=2)candidates.push({type:'npc',id:n.id,d,x:n.x,y:n.y});}
+ for(const p of(PROP[S.zone]||[])){const d=Math.abs(S.x-p.x)+Math.abs(S.y-p.y);if(d<=2)candidates.push({type:'prop',id:p.id,d,x:p.x,y:p.y});}
+ candidates.sort((a,b)=>a.d-b.d || (a.type==='npc'?-1:1));
+ if(candidates.length){const c=candidates[0];bleep(690,.06);if(c.type==='npc')speakTo(c.id);else propInteract(c.id);updateHud();return;}
+ const hints={home:'Acercate a la radio o a alguien de la familia.',street:'Podés entrar a las puertas o ir hacia la derecha para llegar a la plaza.',plaza:'Acercate a tus amigos o a la antena del centro.',market:'Hablá con Manolito o investigá la caja y los precios.',school:'Hablá con Miguelito o investigá el pizarrón.',office:'Acercate al señor del sombrero.'};toast(hints[S.zone]);
+}
+const rect=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h));};
+const outline=(x,y,w,h,c='#2b3449',thick=2)=>{rect(x,y,w,thick,c);rect(x,y+h-thick,w,thick,c);rect(x,y,thick,h,c);rect(x+w-thick,y,thick,h,c)};
+const textAt=(str,x,y,col='#27344f',size=12,align='center')=>{ctx.fillStyle=col;ctx.font=`bold ${size}px Trebuchet MS, sans-serif`;ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(str,x,y)};
+const tile=(x,y,c)=>rect(x*TILE,y*TILE,TILE,TILE,c);
+function drawHome(){rect(0,0,832,512,'#f3d9af');
+ for(let y=3;y<H;y++)for(let x=0;x<W;x++){tile(x,y,(x+y)%2?'#e0bd91':'#e5c399');rect(x*32,y*32+31,32,1,'#cfa97e');if(x%3===0)rect(x*32+1,y*32,1,32,'#eacba2')}
+ rect(0,0,832,98,'#b9a2bf');for(let x=0;x<832;x+=54){rect(x,12,2,79,'#ac94b4');rect(x+8,19,25,2,'#c3afc9')}rect(0,90,832,9,'#8b708f');
+ // window
+ rect(554,24,107,74,'#635876');rect(562,29,91,60,'#b4d6e5');rect(607,29,5,60,'#e9e9d2');rect(562,57,91,5,'#e9e9d2');rect(554,88,109,8,'#dbcbbb');
+ // couch
+ rect(78,225,121,77,'#6e9ba1');rect(83,221,108,20,'#9cbdba');rect(85,270,105,20,'#537881');rect(89,293,13,15,'#3a555a');rect(175,293,13,15,'#3a555a');outline(78,225,121,77);
+ // carpet
+ rect(295,286,254,130,'#cd8996');rect(312,300,218,102,'#e9a0a6');rect(330,316,185,70,'#e8bdb2');
+ // dining table
+ rect(323,203,148,66,'#aa754e');rect(332,211,132,49,'#dbab72');rect(330,265,13,14,'#8e5c3e');rect(456,265,13,14,'#8e5c3e');outline(323,203,148,66,'#77563e',3);
+ // soup bowl
+ rect(371,211,36,24,'#f6f2e4');rect(377,215,24,14,'#bcc781');rect(384,212,8,5,'#9db06a');
+ // radio table
+ rect(500,146,90,45,'#8f614e');rect(510,136,72,45,'#5a5149');rect(517,141,58,31,'#b3a382');rect(521,147,34,19,'#4e625f');for(let j=0;j<4;j++)rect(559+j*3,147,1,21,'#67523f');rect(565,166,8,8,'#564b37');outline(510,136,72,45);
+ // bookcase
+ rect(65,100,142,69,'#8b6650');rect(70,104,132,57,'#c5a07b');for(let i=0;i<12;i++)rect(74+i*10,108,7,40,['#ad5869','#72a3ac','#e0be71','#8881a0'][i%4]);rect(63,160,147,11,'#825b44');
+ // cactus plant
+ rect(692,148,31,32,'#a16d54');rect(700,131,15,32,'#559761');rect(693,140,9,14,'#559761');rect(711,137,11,16,'#559761');
+ // parent office chair
+ rect(589,225,60,63,'#85a9b3');rect(593,284,52,10,'#536f81');
+ // door
+ rect(390,449,54,63,'#a16f4d');rect(400,455,35,54,'#e6b57b');rect(431,482,5,5,'#e7de92');textAt('SALIDA',417,445,'#424356',13);
+}
+function drawStreet(){rect(0,0,832,512,'#d2c1a7');
+ // houses and facades
+ rect(0,0,832,160,'#d0b5b3');rect(0,0,270,160,'#dca48a');rect(276,0,344,160,'#b3b7d7');rect(620,0,212,160,'#e1c49c');
+ for(let i=0;i<4;i++){let x=35+i*54;rect(x,37,36,54,'#856f7d');rect(x+4,41,28,46,'#b4d6df');rect(x+17,41,3,46,'#ecdee0');}
+ rect(285,42,304,65,'#8d95b7');rect(292,46,288,56,'#e5dad2');textAt('ALMACÉN DON MANOLO',436,66,'#414065',20);rect(562,109,44,51,'#bd8061');rect(570,117,26,41,'#60596b');
+ rect(646,33,171,67,'#c7e3c4');textAt('ESCUELA',733,57,'#506c63',23);rect(700,111,75,51,'#8a957f');rect(709,117,55,44,'#dddcb9');
+ // main sidewalk
+ rect(0,160,832,40,'#e7d9b7');for(let x=0;x<832;x+=38)rect(x,166,2,34,'#b6aa99');
+ rect(0,200,832,197,'#8e9a9c');for(let x=0;x<832;x+=85){rect(x,209,43,4,'#aab2ae');rect(x+10,376,62,3,'#7e8b8f')}
+ rect(0,395,832,117,'#e3d5ba');for(let x=0;x<832;x+=45){rect(x,398,2,114,'#c8b9a1');rect(x+6,430,22,2,'#d1c1ab')}
+ // house door south
+ rect(196,409,58,93,'#9c695d');rect(203,416,46,85,'#c8977b');rect(237,454,5,5,'#f0db82');rect(188,401,74,10,'#715e69');textAt('CASA',225,395,'#3f3d57',13);
+ // zebra crossing to plaza
+ for(let i=0;i<5;i++)rect(761+i*16,246,9,65,'#ece2c5');rect(791,197,5,198,'#e5ddbe');
+ // lower facade
+ rect(0,473,180,40,'#c29e9a');rect(650,472,182,40,'#b7c1a9');
+ // street decoration: lamp and bin
+ rect(44,187,7,46,'#50576e');rect(33,177,28,14,'#f2db8e');rect(36,171,22,6,'#6d6170');rect(654,393,31,38,'#628778');outline(654,393,31,38,'#45596b');
+ // gate signs
+ textAt('PLAZA →',787,226,'#fcf6db',15);textAt('↑',575,147,'#fff9d2',20);textAt('↑',738,147,'#f5f6d3',20);
+}
+function drawPlaza(){rect(0,0,832,512,'#8ec69d');for(let y=0;y<H;y++)for(let x=0;x<W;x++){if((x*7+y*11)%13<2)rect(x*32+5,y*32+14,5,2,'#6fad85');if((x*5+y*7)%21===0)rect(x*32+19,y*32+7,3,3,'#ffd4da')}
+ // main trails
+ rect(0,228,832,62,'#dcccab');rect(0,249,832,2,'#c0b08f');rect(390,0,72,512,'#dcccab');for(let x=0;x<832;x+=28)rect(x,285,14,2,'#c2b291');
+ // fountain and patch of flowers
+ rect(576,318,147,102,'#6795aa');rect(588,331,122,75,'#a3d3de');rect(625,351,49,37,'#b2e7ed');rect(637,336,27,24,'#e7f7da');
+ for(let i=0;i<13;i++){const xx=52+i*48,yy=(i%2?150:338);rect(xx,yy,4,5,i%3?'#f2d97e':'#f1aeb7')}
+ // trees
+ for(const [x,y] of [[3,3],[22,3],[3,12],[22,12],[10,2],[18,13]]){rect(x*32+11,y*32+5,10,32,'#7e684a');rect(x*32-8,y*32-10,49,35,'#4a9370');rect(x*32-1,y*32-21,35,33,'#64ae7e');rect(x*32+6,y*32-14,26,26,'#7dc48a')}
+ // antenna / radio tower
+ rect(413,89,12,102,'#525978');rect(398,102,42,12,'#d54a64');rect(406,82,29,13,'#e4b44e');rect(408,144,26,9,'#59617c');rect(400,176,39,18,'#283856');rect(406,179,26,10,'#b2c2c6');
+ // bench
+ rect(319,312,63,15,'#a56d51');rect(326,325,7,20,'#6a5545');rect(366,325,7,20,'#6a5545');rect(318,300,68,9,'#b77d51');
+ textAt('PLAZA DEL BARRIO',133,54,'#407d67',16);
+}
+function drawMarket(){rect(0,0,832,512,'#f0dda8');for(let y=3;y<H;y++)for(let x=0;x<W;x++){tile(x,y,(x+y)%2===0?'#e6d1a5':'#e9dab2')}
+ rect(0,0,832,94,'#c36a5d');for(let x=0;x<832;x+=68){rect(x,0,34,25,'#fbe6b5');rect(x,27,832,4,'#9a554d')}rect(0,82,832,14,'#745c52');textAt('ALMACÉN DON MANOLO',410,58,'#fff5d4',29);
+ // shelf left
+ rect(91,174,263,40,'#8c6950');rect(96,151,252,24,'#ae8467');for(let i=0;i<11;i++){const x=106+i*22;rect(x,149,15,27,['#e4b76a','#aa9bc1','#c78972','#a7c28b'][i%4]);}rect(91,214,263,13,'#775740');
+ // shelf right
+ rect(515,320,193,42,'#8c6950');for(let i=0;i<8;i++)rect(531+i*22,290,12,36,['#b1b7c0','#e5b56f','#b0b98a'][i%3]);rect(516,350,196,14,'#775740');
+ // price board
+ rect(124,107,96,66,'#3b594c');outline(124,107,96,66,'#875c44',5);textAt('PAN',173,129,'#f8f3cf',14);textAt('$$$$',173,149,'#fbe6a2',14);
+ // register
+ rect(384,145,77,30,'#7a98aa');rect(396,135,57,18,'#d2b5a6');rect(397,139,53,9,'#546477');rect(370,173,103,55,'#956f4a');rect(380,177,86,43,'#b8966c');
+ // toy on shelf
+ rect(184,348,50,30,'#e6b67a');rect(189,353,40,21,'#c96d57');rect(196,368,7,8,'#3c4f64');rect(216,368,7,8,'#3c4f64');
+ // exit
+ rect(369,454,81,58,'#a47b56');rect(379,455,62,55,'#d7b27c');textAt('SALIDA',411,438,'#68543a',14);
+}
+function drawSchool(){rect(0,0,832,512,'#e5dbb8');for(let y=3;y<H;y++)for(let x=0;x<W;x++)tile(x,y,(x+y)%2===0?'#dfc9a5':'#e8d5b5');
+ rect(0,0,832,95,'#c1d3bc');for(let x=0;x<832;x+=60)rect(x,0,3,94,'#a4b9a6');rect(0,91,832,11,'#7b8d80');
+ rect(312,103,238,72,'#406559');outline(312,103,238,72,'#8b6d52',6);textAt('RESPUESTA: PORQUE SÍ',431,133,'#f1f0cd',15);textAt('???',424,158,'#f1f0cd',15);
+ // desks
+ for(let y of [8,11])for(let x of [7,10,14,17]){rect(x*32-8,y*32+5,42,19,'#b58663');rect(x*32-5,y*32+3,37,18,'#dfac7d');rect(x*32-4,y*32+23,5,11,'#7d5e4d');rect(x*32+25,y*32+23,5,11,'#7d5e4d')}
+ // exercise notebook
+ rect(247,199,34,34,'#f4f3df');for(let i=0;i<5;i++)rect(253,205+i*5,24,1,'#9eabcf');rect(247,199,3,34,'#b65b7f');
+ rect(377,455,75,57,'#91a9a7');rect(384,458,59,54,'#d9ded0');textAt('SALIDA',414,444,'#52685e',13);
+ rect(60,127,114,85,'#a7c4d0');rect(69,133,95,73,'#d6e4df');rect(113,133,5,73,'#a7c4d0');rect(69,171,95,4,'#a7c4d0');
+}
+function drawOffice(){rect(0,0,832,512,'#a7a4ce');for(let y=0;y<H;y++)for(let x=0;x<W;x++){tile(x,y,(x+y)%2?'#c3b5d4':'#ddd1df')}
+ for(let i=0;i<26;i+=2){rect(i*32,0,30,49,'#625f9d');rect(i*32+7,11,17,30,'#e0d5d7')}
+ rect(0,71,832,31,'#7c71aa');textAt('MINISTERIO DEL TODO BIEN · NO PREGUNTE',416,85,'#fff7d5',19);
+ for(let k=0;k<5;k++){const x=70+k*138;rect(x,144,70,87,'#eee6d3');outline(x,144,70,87,'#777094',3);for(let r=0;r<4;r++)rect(x+8,160+r*13,53,2,'#b3acc5')}
+ rect(310,285,200,72,'#736887');rect(325,296,169,49,'#a59db4');textAt('¿TODO BIEN?',411,323,'#e7ddcd',16);
+ rect(625,262,60,80,'#f1e7d8');outline(625,262,60,80,'#75679b');for(let i=0;i<4;i++)rect(637,280+i*10,35,3,'#aaa0bf');
+ rect(372,449,85,58,'#7772a8');rect(383,457,64,50,'#bdabd6');textAt('SALIDA',415,445,'#544b76',13);
+}
+function sceneDraw(){if(S.zone==='home')drawHome();else if(S.zone==='street')drawStreet();else if(S.zone==='plaza')drawPlaza();else if(S.zone==='market')drawMarket();else if(S.zone==='school')drawSchool();else drawOffice();
+ // glowing point of interest
+ const focus=interestId();if(focus){const p=(PROP[S.zone]||[]).find(z=>z.id===focus);const n=(NPCS[S.zone]||[]).find(z=>z.id===focus);const v=p||n;if(v){const wave=Math.sin(frameClock*.006)*3;rect(v.x*32+8,v.y*32-15+wave,16,14,'#ffe88b');outline(v.x*32+8,v.y*32-15+wave,16,14,'#5f4c7d',2);textAt('!',v.x*32+16,v.y*32-8+wave,'#534079',12)}}
+ // NPCs and followers
+ const actors=[...(NPCS[S.zone]||[]).map(n=>({id:n.id,x:n.x,y:n.y,npc:true}))];
+ S.selected.slice(1).forEach((id,i)=>{const past=trail[Math.min(i*2+1,trail.length-1)]||{x:S.x-1-i,y:S.y+1};if(past.x===S.x&&past.y===S.y)return;actors.push({id,x:past.x,y:past.y,npc:false})});
+ actors.push({id:'mafalda',x:S.x,y:S.y,npc:false,lead:true});actors.sort((a,b)=>a.y-b.y);
+ for(const a of actors){drawSprite(a.id,a.x*32,a.y*32,a.lead);if(a.npc&&Math.abs(S.x-a.x)+Math.abs(S.y-a.y)<=2.1)drawTag(people[a.id].name,a.x*32+16,a.y*32-9)}
+ // highlight nearby props
+ for(const prop of(PROP[S.zone]||[])){if(Math.abs(prop.x-S.x)+Math.abs(prop.y-S.y)<=2)drawTag(prop.name,prop.x*32+16,prop.y*32-22)}
+ if(S.stage===5){rect(300,12,230,28,'#fff0b6');outline(300,12,230,28);textAt('EL BARRIO VUELVE A PREGUNTAR',415,26,'#4d4863',12)}
+}
+function interestId(){if(S.zone==='home'&&S.stage===0)return 'radio';if(S.zone==='plaza'&&S.stage===1)return !S.flags.felipe?'felipe':!S.flags.susanita?'susanita':!S.flags.libertad?'libertad':'antenna';if(S.zone==='plaza'&&S.stage===4)return 'antenna';if(S.zone==='market'&&S.stage===2)return !S.flags.manolito?'manolito':!S.flags.donmanolo?'donmanolo':!S.flags.price?'price':'register';if(S.zone==='school'&&S.stage===3)return !S.flags.miguelito?'miguelito':!S.flags.maestra?'maestra':!S.flags.homework?'homework':'blackboard';if(S.zone==='office'&&S.stage===4)return 'boss';return null;}
+function drawTag(t,x,y){const w=Math.min(240,ctx.measureText(t).width+20);const actual=Math.max(w,62);rect(x-actual/2,y-11,actual,19,'#fffae5');outline(x-actual/2,y-11,actual,19,'#374568',2);textAt(t,x,y-1,'#303b55',11)}
+function drawSprite(id,x,y,lead=false){const p=people[id];if(!p)return;const ox=x+5,oy=y+3;
+ // little shadow
+ ctx.fillStyle='#23344b44';ctx.beginPath();ctx.ellipse(x+16,y+28,12,4,0,0,2*Math.PI);ctx.fill();
+ if(id==='burocracia'){rect(x+7,y+17,19,11,'#4d8069');rect(x+11,y+12,13,11,'#68a879');rect(x+15,y+15,6,6,'#90b973');rect(x+23,y+18,8,7,'#8fc8a6');rect(x+27,y+19,2,2,'#303b4b');rect(x+9,y+26,5,3,'#476b54');rect(x+22,y+26,5,3,'#476b54');return;}
+ if(id==='guille'){rect(ox+8,oy+18,15,9,'#7ba5cd');rect(ox+9,oy+9,14,13,'#f0c09e');rect(ox+10,oy+6,13,6,'#ae8454');rect(ox+11,oy+13,2,2,'#273048');rect(ox+20,oy+13,2,2,'#273048');return;}
+ const body=p.dress||'#859db5';
+ // shoes legs
+ rect(ox+5,oy+24,7,5,'#30344d');rect(ox+16,oy+24,7,5,'#30344d');
+ rect(ox+8,oy+20,3,7,'#ebba98');rect(ox+18,oy+20,3,7,'#ebba98');
+ rect(ox+5,oy+15,19,11,body);rect(ox+2,oy+17,5,7,'#edb999');rect(ox+23,oy+17,5,7,'#edb999');
+ // head and ears
+ rect(ox+5,oy+4,18,14,'#efc6a1');rect(ox+2,oy+9,4,6,'#e7ad90');rect(ox+23,oy+9,4,6,'#e7ad90');
+ const hair=p.hair||'#514b49';
+ if(p.look==='bob'){rect(ox+3,oy+1,22,8,hair);rect(ox+2,oy+4,5,16,hair);rect(ox+21,oy+4,5,16,hair);rect(ox+10,oy+2,11,3,'#252d3d');rect(ox+19,oy,5,5,'#eb6473');}
+ else if(p.look==='spike'){rect(ox+5,oy+2,19,6,hair);for(let i=0;i<5;i++)rect(ox+4+i*4,oy-2-(i%2)*2,4,8,hair);rect(ox+2,oy+5,6,6,hair);}
+ else if(p.look==='brush'){rect(ox+3,oy+1,22,7,hair);for(let i=0;i<6;i++)rect(ox+4+i*4,oy-2,2,4,hair);}
+ else if(p.look==='curls'||p.look==='curl'){for(let i=0;i<6;i++)rect(ox+2+i*4,oy+1+(i%2)*2,7,8,hair);rect(ox+1,oy+8,5,8,hair);rect(ox+22,oy+8,5,8,hair);}
+ else if(p.look==='long'){rect(ox+4,oy+1,21,8,hair);rect(ox+2,oy+6,5,16,hair);rect(ox+21,oy+6,5,16,hair);}
+ else if(p.look==='short'){rect(ox+4,oy+1,20,6,hair);rect(ox+3,oy+5,7,5,hair);}
+ else{rect(ox+4,oy+1,20,7,hair)}
+ // eyes, cheeks, smile
+ rect(ox+10,oy+10,2,3,'#263048');rect(ox+18,oy+10,2,3,'#263048');rect(ox+13,oy+15,5,1,'#a96663');
+ if(id==='felipe')rect(ox+13,oy+17,6,3,'#f5efd6');
+ if(id==='susanita'){rect(ox+3,oy+6,6,5,'#d6829d');rect(ox+20,oy+6,6,5,'#d6829d')}
+ if(id==='libertad'){rect(ox+6,oy+19,15,4,'#917fc5')}
+ if(lead){rect(ox+8,oy-6,14,4,'#ffe483');rect(ox+10,oy-7,10,2,'#ffffff')}
+}
+function frame(t){const dt=Math.min(.05,(t-lastTs)/1000||.016);lastTs=t;frameClock=t;if(moveCooldown>0)moveCooldown=Math.max(0,moveCooldown-dt);if(mode==='explore'){S.seconds+=dt;saveTick+=dt;if(saveTick>=13){saveTick=0;save()}if(moveCooldown<=0){for(const [key,dir] of [['ArrowUp','up'],['w','up'],['ArrowDown','down'],['s','down'],['ArrowLeft','left'],['a','left'],['ArrowRight','right'],['d','right'],['up','up'],['down','down'],['left','left'],['right','right']])if(held.has(key)){step(dir);break;}}}
+ updateMusic(dt);sceneDraw();requestAnimationFrame(frame)}
+function normalizeKey(k){return k.length===1?k.toLowerCase():k;}
+window.addEventListener('keydown',e=>{const k=normalizeKey(e.key);if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','Tab'].includes(e.key))e.preventDefault();
+ if(mode==='title'){if(k==='Enter')$('startNew')?.click();return;}
+ if(mode==='dialogue'){if(['Enter',' ','e','z'].includes(k)&&!e.repeat)nextDialog();return;}
+ if(mode==='battle'){if(['1','2','3','4'].includes(k)&&!e.repeat){battleAct({1:'attack',2:'skill',3:'talk',4:'item'}[k]);}return;}
+ if(mode==='panel'){if(k==='Escape'||k==='p'||k==='i')closeOverlay();return;}
+ if(mode==='ending'){if(k==='Enter')$('wander')?.click();return;}
+ if(k==='e'||k==='z'||k==='Enter'||k===' '){if(!e.repeat)interact();return;}
+ if(k==='p'){showTeam();return;}if(k==='i'){showJournal();return;}
+ if(['w','a','s','d','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(k)){held.add(k);if(!e.repeat)step({w:'up',s:'down',a:'left',d:'right',ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'}[k]);}
+});
+window.addEventListener('keyup',e=>held.delete(normalizeKey(e.key)));window.addEventListener('blur',()=>held.clear());
+$('dialogue').addEventListener('click',()=>mode==='dialogue'&&nextDialog());
+$('dialogue').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();e.stopPropagation();if(mode==='dialogue')nextDialog()}});
+$('journalBtn').onclick=showJournal;$('teamBtn').onclick=showTeam;$('mobileTeam').onclick=showTeam;$('mobileAction').onclick=interact;
+$('soundBtn').onclick=()=>{sound=!sound;$('soundBtn').textContent=sound?'♫ ON':'♫ OFF';if(sound)bleep(500,.13)};
+document.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>battleAct(b.dataset.act));
+document.querySelectorAll('[data-dir]').forEach(b=>{const key=b.dataset.dir;const start=e=>{e.preventDefault();held.add(key);b.classList.add('held');step(key);try{b.setPointerCapture(e.pointerId)}catch(err){}};const end=e=>{held.delete(key);b.classList.remove('held')};b.addEventListener('pointerdown',start);b.addEventListener('pointerup',end);b.addEventListener('pointercancel',end);b.addEventListener('lostpointercapture',end);});
+canvas.addEventListener('pointerdown',e=>{if(mode!=='explore')return;const r=canvas.getBoundingClientRect(),x=Math.floor((e.clientX-r.left)*canvas.width/r.width/32),y=Math.floor((e.clientY-r.top)*canvas.height/r.height/32);
+ if(Math.abs(x-S.x)+Math.abs(y-S.y)<=3){const nearest=[...(NPCS[S.zone]||[]).map(n=>({...n,type:'npc'})),...(PROP[S.zone]||[]).map(n=>({...n,type:'prop'}))].filter(n=>Math.abs(n.x-x)<=1&&Math.abs(n.y-y)<=1&&Math.abs(S.x-n.x)+Math.abs(S.y-n.y)<=2).sort((a,b)=>(Math.abs(a.x-x)+Math.abs(a.y-y))-(Math.abs(b.x-x)+Math.abs(b.y-y)))[0];if(nearest){if(nearest.type==='npc')speakTo(nearest.id);else propInteract(nearest.id)}}});
+window.addEventListener('beforeunload',save);
+// Development-only diagnostics are intentionally small and do not alter game progression.
+window.__MAFALDA_TEST__={getState:()=>S,begin,step,interact,changeZone,speakTo,propInteract,startBattle,battleAct,save,refresh:()=>{updateHud();sceneDraw()},getMode:()=>mode};
+updateHud();startScreen();requestAnimationFrame(frame);
+})();
+</script>
+</body></html>
